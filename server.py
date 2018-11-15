@@ -10,24 +10,22 @@ urls = (
 )
 
 app = web.application(urls, globals())
+proxies = {}
 
 
 class Proxy:
-    def __init__(self):
-        self.proxies = {}
-
     def POST(self):
-        post_data = web.input(_method='post')
+        post_data = json.loads(web.data().decode('utf-8'))
         if 'auth' in post_data and post_data['auth'] == AUTH:
-            self.proxies[post_data['client_id']] = post_data['data']
-            return json.dumps({'code': 0, 'data': self.proxies, 'count': len(self.proxies)})
+            proxies[post_data['client_id']] = post_data['data']
+            return json.dumps({'code': 0, 'data': proxies, 'count': len(proxies)})
         else:
             return json.dumps({'code': 1, 'msg': 'Authentication failed'})
 
     def GET(self):
         get_data = web.input(_method='get')
         if 'auth' in get_data and get_data['auth'] == AUTH:
-            return json.dumps({'code': 0, 'data': self.proxies, 'count': len(self.proxies)})
+            return json.dumps({'code': 0, 'data': proxies, 'count': len(proxies)})
         else:
             return json.dumps({'code': 1, 'msg': 'Authentication failed'})
 
