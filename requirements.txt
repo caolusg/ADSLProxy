@@ -1,0 +1,2 @@
+web.py==0.40.dev1
+requests==2.19.1
