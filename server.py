@@ -18,7 +18,7 @@ class Proxy:
 
     def POST(self):
         post_data = web.input(_method='post')
-        if post_data['auth'] == AUTH:
+        if 'auth' in post_data and post_data['auth'] == AUTH:
             self.proxies[post_data['client_id']] = post_data['data']
             return json.dumps({'code': 0, 'data': self.proxies, 'count': len(self.proxies)})
         else:
@@ -26,7 +26,7 @@ class Proxy:
 
     def GET(self):
         get_data = web.input(_method='get')
-        if get_data['auth'] == AUTH:
+        if 'auth' in get_data and get_data['auth'] == AUTH:
             return json.dumps({'code': 0, 'data': self.proxies, 'count': len(self.proxies)})
         else:
             return json.dumps({'code': 1, 'msg': 'Authentication failed'})
