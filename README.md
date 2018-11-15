@@ -52,3 +52,6 @@ Get http://IP:8080/api/proxy?auth=my_auth
     "count": 1
 }
 ```
+
+# Reference
+[Python爬虫进阶七之设置ADSL拨号服务器代理| 静觅](https://cuiqingcai.com/3443.html)
