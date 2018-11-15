@@ -6,4 +6,4 @@ PORT = 8877
 
 Ethernet = 'ppp0'
 
-URL = 'my_api_url'
+URL = 'http://IP:8080/api/proxy'
