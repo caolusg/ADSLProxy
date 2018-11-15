@@ -10,7 +10,7 @@ import datetime
 import json
 import os
 import time
-from config import AUTH, Ethernet, URL, PORT
+from config import AUTH, Ethernet, URL, PORT, PPPOE_START_COMMAND, PPPOE_STOP_COMMAND
 
 
 def get_ip_address(ethernet):
@@ -28,9 +28,9 @@ def get_mac_address():
 
 
 if __name__ == "__main__":
-    os.system('pppoe-stop')
+    os.system(PPPOE_STOP_COMMAND)
     time.sleep(3)
-    os.system('pppoe-start')
+    os.system(PPPOE_START_COMMAND)
     time.sleep(3)
     mac_address = get_mac_address()
     data = {

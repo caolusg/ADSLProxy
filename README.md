@@ -16,14 +16,19 @@ cd ADSLProxy
 pip install -r requirements.txt
 ```
 ## Client
+需要用root用户执行，因为ADSL拨号的权限级别较高
 ```bash
-crontab -e
+vim /etc/crontab
 ```
 输入：(每隔10分钟更换一次IP)
 ```bash
-0,10,20,30,43,50 * * * * cd /path/to/ADSLProxy && python client.py
+0,10,20,30,43,50 * * * * root cd /path/to/ADSLProxy && python client.py
 ```
+保存退出，并重启crond
 
+```bash
+service crond restart
+```
 ## Server
 启动web服务
 ```bash
