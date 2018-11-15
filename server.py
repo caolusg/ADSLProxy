@@ -9,6 +9,8 @@ urls = (
     '/api/proxy', 'Proxy',
 )
 
+app = web.application(urls, globals())
+
 
 class Proxy:
     def __init__(self):
@@ -28,3 +30,9 @@ class Proxy:
             return json.dumps({'code': 0, 'data': self.proxies, 'count': len(self.proxies)})
         else:
             return json.dumps({'code': 1, 'msg': 'Authentication failed'})
+
+
+application = app.wsgifunc()
+
+if __name__ == "__main__":
+    app.run()
