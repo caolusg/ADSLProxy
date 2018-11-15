@@ -9,7 +9,7 @@ import requests
 import datetime
 import json
 
-from config import AUTH, Ethernet, URL
+from config import AUTH, Ethernet, URL, PORT
 
 
 def get_ip_address(ethernet):
@@ -33,6 +33,7 @@ if __name__ == "__main__":
         "client_id": mac_address,
         "data": {
             "ip": get_ip_address(Ethernet),
+            "port": PORT,
             "time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }
     }
