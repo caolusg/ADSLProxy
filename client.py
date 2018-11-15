@@ -7,7 +7,7 @@ import struct
 import uuid
 import requests
 import datetime
-
+import json
 
 from config import AUTH, Ethernet, URL
 
@@ -37,4 +37,4 @@ if __name__ == "__main__":
         }
     }
     print(data)
-    requests.post(url=URL, data=data)
+    requests.post(url=URL, data=json.dumps(data))
