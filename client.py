@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # encoding: utf-8
+from __future__ import print_function
 import socket
 import fcntl
 import struct
 import uuid
 import requests
 import datetime
-from __future__ import print_function
+
 
 from config import AUTH, Ethernet, URL
 
