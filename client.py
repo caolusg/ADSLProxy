@@ -37,5 +37,4 @@ if __name__ == "__main__":
             "time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }
     }
-    print(data)
     requests.post(url=URL, data=json.dumps(data))
