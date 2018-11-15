@@ -5,6 +5,8 @@ import fcntl
 import struct
 import uuid
 import requests
+import datetime
+from __future__ import print_function
 
 from config import AUTH, Ethernet, URL
 
@@ -30,6 +32,8 @@ if __name__ == "__main__":
         "client_id": mac_address,
         "data": {
             "ip": get_ip_address(Ethernet),
+            "time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }
     }
+    print(data)
     requests.post(url=URL, data=data)
