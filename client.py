@@ -8,7 +8,8 @@ import uuid
 import requests
 import datetime
 import json
-
+import os
+import time
 from config import AUTH, Ethernet, URL, PORT
 
 
@@ -27,6 +28,10 @@ def get_mac_address():
 
 
 if __name__ == "__main__":
+    os.system('pppoe-stop')
+    time.sleep(3)
+    os.system('pppoe-start')
+    time.sleep(3)
     mac_address = get_mac_address()
     data = {
         "auth": AUTH,
