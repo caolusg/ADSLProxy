@@ -9,29 +9,36 @@
 
 # 使用
 
-## Client && Server
+## Client
+以root用户登陆VPS
+
+修改config文件中的:`AUTH`,`IP` 和 init.sh文件中的`htpasswd`的用户名和密码
 ```bash
+cd /root/
+yum install -y epel-release
+yum install -y git
 git clone https://github.com/nghuyong/ADSLProxy.git
 cd ADSLProxy
-pip install -r requirements.txt
+chmod +x init.sh
+./init.sh
 ```
-## Client
-需要用root用户执行，因为ADSL拨号的权限级别较高
+设置每隔5分钟，更换一次IP
 ```bash
 vim /etc/crontab
 ```
-输入：(每隔10分钟更换一次IP)
 ```bash
-0,10,20,30,43,50 * * * * root cd /path/to/ADSLProxy && python client.py
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * root cd /root/ADSLProxy && python client.py
 ```
 保存退出，并重启crond
-
 ```bash
 service crond restart
 ```
+
 ## Server
-启动web服务
+修改config文件中的:`AUTH`,`IP`
 ```bash
+git clone https://github.com/nghuyong/ADSLProxy.git
+pip install -r requirements.txt
 nohup python server.py &
 ```
 
@@ -52,31 +59,6 @@ Get http://IP:8080/api/proxy?auth=my_auth
     "count": 1
 }
 ```
-
-# Note
-
-## Centos上squid的配置
-`vim /etc/squid/squid.conf`
-
-1. 注释`http_access allow all`替换成：
-
-```bash
-auth_param basic program /usr/lib64/squid/ncsa_auth /etc/squid/passwd
-acl auth_user proxy_auth REQUIRED
-http_access allow auth_user
-```
-
-2. 配置高匿，添加:
-
-```bash
-request_header_access Via deny all
-request_header_access X-Forwarded-For deny all
-```
-
-
-
-## Centos 关闭防火墙
-`poweroff`
 
 # Reference
 [Python爬虫进阶七之设置ADSL拨号服务器代理| 静觅](https://cuiqingcai.com/3443.html)
