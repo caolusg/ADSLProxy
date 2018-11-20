@@ -12,7 +12,8 @@
 ## Client
 以root用户登陆VPS
 
-修改config文件中的:`AUTH`,`IP` 和 init.sh文件中的`htpasswd`的用户名和密码
+修改`config`文件中的:`AUTH`,`IP` ；`init.sh`文件中的`htpasswd` ； `squid.conf`文件中的`http_port`
+
 ```bash
 cd /root/
 yum install -y epel-release
