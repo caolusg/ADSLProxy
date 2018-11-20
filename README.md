@@ -2,7 +2,8 @@
 基于ADSL拨号的VPS的代理IP服务
 
 # 原理
-1. 准备一个能ADSL拨号的VPS(Client)，并在上面搭建一个squid代理服务。
+![](./principle.png)
+1. 准备一个能ADSL拨号的VPS(Client)，并在上面搭建一个代理服务(squid/TinyProxy)。
 2. 准备一个有固定IP的Server，并在上面搭建一个简单的web服务。
 3. 在Client上定时拨号产生新的IP，并将新的IP传送到Server
 4. 使用者请求Server获取最新的动态IP
