@@ -23,17 +23,8 @@ cd ADSLProxy
 chmod +x init.sh
 ./init.sh
 ```
-设置每隔5分钟，更换一次IP
-```bash
-vim /etc/crontab
-```
-```bash
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * root cd /root/ADSLProxy && python client.py
-```
-保存退出，并重启crond
-```bash
-service crond restart
-```
+
+
 
 ## Server
 修改config文件中的:`AUTH`,`IP`
